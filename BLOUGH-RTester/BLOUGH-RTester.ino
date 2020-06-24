@@ -4,14 +4,19 @@
 #define MALE_D_PLUS 3
 #define MALE_D_MINUS 4
 #define MALE_VCC 5
-#define MALE_SHIELD 10
+#define MALE_SHIELD 6  //modified dc 5-22-2020
 
 //Female USB Pins
-#define FEMALE_GROUND 6
-#define FEMALE_D_PLUS 7
-#define FEMALE_D_MINUS 8
-#define FEMALE_VCC 9
-#define FEMALE_SHIELD 11
+#define FEMALE_GROUND 7
+#define FEMALE_D_PLUS 8
+#define FEMALE_D_MINUS 9
+#define FEMALE_VCC 10
+#define FEMALE_SHIELD 11  //modified dc 5-22-2020
+
+//Go, No-Go LED Pins
+#define RED_LED 12  //added dc 5-22-2020
+#define GREEN_LED 13  //added dc 5-22-2020
+
 
 void setup() {
 
@@ -23,7 +28,8 @@ void setup() {
   pinMode(FEMALE_VCC, INPUT_PULLUP);
   pinMode(FEMALE_SHIELD, INPUT_PULLUP);
 
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT); //added dc 5-22-2020
+  pinMode(RED_LED, OUTPUT); //added dc 5-22-2020
 
   Serial.begin(9600);
 
@@ -37,13 +43,10 @@ void setup() {
 
   if (allTestsPassed) {
     Serial.println("All Tests Passed!");
-    digitalWrite(LED_BUILTIN, HIGH);
+    digitalWrite(GREEN_LED, HIGH);  //modified dc 5-22-2020
   } else {
     while(true){
-      digitalWrite(LED_BUILTIN, HIGH);
-      delay(500);
-      digitalWrite(LED_BUILTIN, LOW);
-      delay(500);
+      digitalWrite(RED_LED, HIGH);  //modified dc 5-22-2020
     }
   }
 }
